@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
       target = document.querySelector('.' + className)
       target.innerText = `[${model.currentTurn}]`
       target.classList.add('occupied')
+    },
+
+    switchTurnIndicator: () => {
+      document.querySelector('.whose-turn').innerText = `It's ${model.currentTurn}'s turn!`;
+    },
+
+    declareWinner: (winner) => {
+      alert(`${winner} wins!!`)
     }
   }
 
@@ -20,13 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         alert('Select an unoccupied location!');
       }
+      controller.checkWinningRow();
     },
 
     switchTurn: () => {
       model.currentTurn === 'X'
         ? model.currentTurn = 'O'
         : model.currentTurn = 'X'
-      document.querySelector('.whose-turn').innerText = `It's ${model.currentTurn}'s turn!`;
+      view.switchTurnIndicator();
     },
 
     isValidMove: (e) => {
@@ -36,6 +45,39 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         return true
       }
+    },
+
+    checkWinningRow: () => {
+      boardRows = document.querySelector('#board').children;
+      for (var i = 0; i < boardRows.length; i++) {
+        var x = 0;
+        var o = 0;
+        for (var j = 0; j < boardRows[i].children.length; j++) {
+          var spaceText = boardRows[i].children[j].innerText;
+          if (spaceText === '[X]') {
+            x++
+          } else if (spaceText === '[O]') {
+            o++
+          }
+        }
+        if (x === 3) {
+          view.declareWinner('X')
+        } else if (o === 3) {
+          view.declareWinner('O')
+        }
+      }
+    },
+
+    checkWinningColumn: () => {
+
+    },
+
+    checkWinningDiag: () => {
+
+    },
+
+    checkTie: () => {
+
     },
 
 
