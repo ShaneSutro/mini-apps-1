@@ -5,5 +5,15 @@
   "city": "San Mateo",
   "role": "Broker",
   "sales": 1000000,
-  "children": []
+  "children": [
+    {
+      "firstName": "Beth Jr.",
+      "lastName": "Johnson",
+      "county": "San Mateo",
+      "city": "Pacifica",
+      "role": "Manager",
+      "sales": 2900000,
+      "children": []
+    }
+  ]
 }
