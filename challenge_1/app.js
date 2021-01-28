@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   var model = {
     currentTurn: 'X',
-    winner: ''
+    winner: '',
+    XWins: 0,
+    OWins: 0,
   }
 
   var view = {
     placePiece: (className) => {
       target = document.querySelector('.' + className)
-      target.innerText = `[${model.currentTurn}]`
+      target.innerText = `${model.currentTurn}`
       target.classList.add('occupied')
     },
 
@@ -20,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('board').removeEventListener('click', controller.selectLocation, true)
       board.removeEventListener("click", controller.selectLocation);
       document.querySelector('.whose-turn').innerText = `${winner} wins!`;
+      document.querySelector('.x-counter').innerText = `X Wins: ${model.XWins}`
+      document.querySelector('.o-counter').innerText = `O Wins: ${model.OWins}`
+      model.currentTurn = winner;
     },
 
     declareDraw: () => {
@@ -57,8 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     checkForWinner: () => {
-      boardRows = document.querySelector('#board').children;
+      boardRows = document.querySelector('#board').children[0].children;
       if (controller.checkWinningRow(boardRows) || controller.checkWinningColumn(boardRows) || controller.checkWinningDiag(boardRows)) {
+        model[`${model.winner}Wins`]++;
         view.declareWinner(model.winner)
       } else if (controller.isADraw(boardRows)) {
         view.declareDraw();
@@ -73,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var o = 0;
         for (var j = 0; j < boardRows[i].children.length; j++) {
           var spaceText = boardRows[i].children[j].innerText;
-          if (spaceText === '[X]') {
+          if (spaceText === 'X') {
             x++
-          } else if (spaceText === '[O]') {
+          } else if (spaceText === 'O') {
             o++
           }
         }
@@ -96,9 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var o = 0;
         for (var j = 0; j < boardRows[i].children.length; j++) {
           var spaceText = boardRows[j].children[i].innerText;
-          if (spaceText === '[X]') {
+          if (spaceText === 'X') {
             x++
-          } else if (spaceText === '[O]') {
+          } else if (spaceText === 'O') {
             o++
           }
         }
@@ -123,14 +129,14 @@ document.addEventListener("DOMContentLoaded", function () {
         var spaceText = boardRows[i].children[i].innerText
         var oppositeAxisText = boardRows[i].children[j].innerText
         console.log('Row at ', i, spaceText)
-        if (spaceText === '[X]') {
+        if (spaceText === 'X') {
           x++;
-        } else if (spaceText === '[O]') {
+        } else if (spaceText === 'O') {
           o++;
         }
-        if (oppositeAxisText === '[X]') {
+        if (oppositeAxisText === 'X') {
           x2++;
-        } else if (oppositeAxisText === '[O]') {
+        } else if (oppositeAxisText === 'O') {
           o2++;
         }
         j--;
@@ -149,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       occupiedSquares = 0;
       for (var i = 0; i < boardRows.length; i++) {
         for (var j = 0; j < boardRows[i].children.length; j++) {
-          if (boardRows[i].children[j].innerText !== '[ ]') {
+          if (boardRows[i].children[j].innerText !== '') {
             occupiedSquares++
           }
         }
@@ -159,19 +165,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetBoard: () => {
       blankBoard = `
-      <h1 class='row-0'>
-        <span class='_0-0'>[  ]</span> <span class='_0-1'>[  ]</span> <span class='_0-2'>[  ]</span>
-      </h1>
-      <h1 class='row-1'>
-        <span class='_1-0'>[  ]</span> <span class='_1-1'>[  ]</span> <span class='_1-2'>[  ]</span>
-      </h1>
-      <h1 class='row-2'>
-        <span class='_2-0'>[  ]</span> <span class='_2-1'>[  ]</span> <span class='_2-2'>[  ]</span>
-      </h1>`
+      <table id='board'>
+      <tr class='row'>
+        <td class='_0-0'></td>
+        <td class='_0-1'></td>
+        <td class='_0-2'></td>
+      </tr>
+      <tr class='row'>
+        <td class='_1-0'></td>
+        <td class='_1-1'></td>
+        <td class='_1-2'></td>
+      </tr>
+      <tr class='row'>
+        <td class='_2-0'></td>
+        <td class='_2-1'></td>
+        <td class='_2-2'></td>
+      </tr>
+    </table>`
       board = document.getElementById('board')
       board.innerHTML = blankBoard;
       board.addEventListener("click", controller.selectLocation);
-      document.querySelector('.whose-turn').innerText = `X starts`;
+      document.querySelector('.whose-turn').innerText = `${model.winner} starts`;
     }
   };
 

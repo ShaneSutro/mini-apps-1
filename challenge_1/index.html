@@ -2,22 +2,34 @@
 <html>
   <head>
     <script src='./app.js' type='text/javascript'></script>
+    <link href='style.css' rel='stylesheet'/>
     <title>Tic Tac Toe</title>
   </head>
   <body>
     <h1>Tic Tac Toe</h1>
     <h1 class="whose-turn">X starts</h1>
-    <div id='board'>
-      <h1 class='row-0'>
-        <span class='_0-0'>[  ]</span> <span class='_0-1'>[  ]</span> <span class='_0-2'>[  ]</span>
-      </h1>
-      <h1 class='row-1'>
-        <span class='_1-0'>[  ]</span> <span class='_1-1'>[  ]</span> <span class='_1-2'>[  ]</span>
-      </h1>
-      <h1 class='row-2'>
-        <span class='_2-0'>[  ]</span> <span class='_2-1'>[  ]</span> <span class='_2-2'>[  ]</span>
-      </h1>
+    <div class="tallies">
+      <h3 class="x-counter">X Wins: 0</h3>
+      <h3 class="o-counter">O Wins: 0</h3>
     </div>
+
+    <table id='board'>
+      <tr class='row'>
+        <td class='_0-0'></td>
+        <td class='_0-1'></td>
+        <td class='_0-2'></td>
+      </tr>
+      <tr class='row'>
+        <td class='_1-0'></td>
+        <td class='_1-1'></td>
+        <td class='_1-2'></td>
+      </tr>
+      <tr class='row'>
+        <td class='_2-0'></td>
+        <td class='_2-1'></td>
+        <td class='_2-2'></td>
+      </tr>
+    </table>
 
     <button>Start Over</button>
 

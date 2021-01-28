@@ -1,0 +1,17 @@
+table {
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+}
+
+td {
+  text-align: center;
+  font-size: 72px;
+  border: 1px solid black;
+  height: 33%;
+  width: 33%;
+}
+
+button {
+  margin-top: 30px;
+}

@@ -65,7 +65,6 @@ var parseData = (data) => {
   };
   parseItem(data);
   csvString = csvHeaders.join(',') + '\n' + csvRows.join('\n');
-  console.log('csvString: ', csvString);
   fs.writeFile(path.join(__dirname, '/client/report.csv'), csvString, (err) => {
     if (err) {
       console.log('Error writing to file!', err);
