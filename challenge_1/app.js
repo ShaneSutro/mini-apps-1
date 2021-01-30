@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     winner: '',
     XWins: 0,
     OWins: 0,
+    player1Name: 'Player 1',
+    player2Name: 'Player 2'
   }
 
   var view = {
@@ -30,6 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
     declareDraw: () => {
       // alert('It\'s a draw!')
       document.querySelector('.whose-turn').innerText = 'Oh man, it\'s a draw!';
+    },
+
+    updateNames: () => {
+      document.querySelector('.player-1-name').innerText = model.player1Name + ' - X'
+      document.querySelector('.player-2-name').innerText = model.player2Name + ' - O'
     }
   }
 
@@ -128,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
       for (var i = 0; i < boardRows.length; i++) {
         var spaceText = boardRows[i].children[i].innerText
         var oppositeAxisText = boardRows[i].children[j].innerText
-        console.log('Row at ', i, spaceText)
         if (spaceText === 'X') {
           x++;
         } else if (spaceText === 'O') {
@@ -186,10 +192,24 @@ document.addEventListener("DOMContentLoaded", function () {
       board.innerHTML = blankBoard;
       board.addEventListener("click", controller.selectLocation);
       document.querySelector('.whose-turn').innerText = `${model.winner} starts`;
+    },
+
+    saveName: (player) => {
+      var name = document.querySelector('.' + player.classList[0] + '-field').value
+      if (player.classList[0] === 'save-player-one') {
+        model.player1Name = name;
+      } else {
+        model.player2Name = name;
+      }
+      view.updateNames();
     }
   };
 
   board = document.querySelector("#board");
   board.addEventListener("click", controller.selectLocation);
-  document.querySelector('button').addEventListener('click', controller.resetBoard)
+  savePlayerOne = document.querySelector('.save-player-one')
+  savePlayerOne.addEventListener('click', () => controller.saveName(savePlayerOne))
+  savePlayerTwo = document.querySelector('.save-player-two')
+  savePlayerTwo.addEventListener('click', () => controller.saveName(savePlayerTwo))
+  document.querySelector('.start-over').addEventListener('click', controller.resetBoard)
 });

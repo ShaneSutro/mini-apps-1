@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
     <script src='./app.js' type='text/javascript'></script>
     <link href='style.css' rel='stylesheet'/>
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <h1>Tic Tac Toe</h1>
+    <h1 class="title">Tic Tac Toe</h1>
     <h1 class="whose-turn">X starts</h1>
     <div class="tallies">
       <h3 class="x-counter">X Wins: 0</h3>
       <h3 class="o-counter">O Wins: 0</h3>
+    </div>
+    <div class="name-labels">
+      <h3 class="player-1-name">Player 1 - X</h3>
+      <h2>vs.</h2>
+      <h3 class="player-2-name">Player 2 - O</h3>
+    </div>
+    <div class="names">
+      <div class="player-one">
+        <input class="save-player-one-field" type="text" placeholder="Player 1 Name">
+        <button class="save-player-one">Save</button>
+      </div>
+      <div class="player-two">
+        <input class="save-player-two-field" type="text" placeholder="Player 2 Name">
+        <button class="save-player-two">Save</button>
+      </div>
     </div>
 
     <table id='board'>
@@ -31,7 +48,7 @@
       </tr>
     </table>
 
-    <button>Start Over</button>
+    <button class="start-over">Start Over</button>
 
   </body>
 
