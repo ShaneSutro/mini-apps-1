@@ -35,11 +35,12 @@ app.listen(port, (err) => {
 });
 
 var parseData = (data) => {
-  var columns = [];
-  var csvHeaders = [];
+  var columns = ['<th>index</th><th>parentRecord</th>'];
+  var csvHeaders = ['index,parentRecord'];
   var rows = [];
   var csvRows = [];
-  var parseItem = (item) => {
+  var rowIndex = 1;
+  var parseItem = (item, parentRecord='') => {
     var row = [];
     var csvRow = [];
     for (key in item) {
@@ -54,12 +55,14 @@ var parseData = (data) => {
         row.splice(index, 0, `<td>${item[key]}</td>`);
       }
     }
-    rows.push(`<tr>${row.join('')}</tr>`);
-    csvRows.push(csvRow.join(','));
+    rows.push(`<tr><td>${rowIndex}</td><td>${parentRecord}</td>${row.join('')}</tr>`);
+    csvRows.push(`${rowIndex},${parentRecord},` + csvRow.join(','));
+    rowIndex++;
 
     if (item.children && item.children.length > 0) {
+      parentRecord === '' ? parentRecord = 1 : parentRecord++;
       for (var i = 0; i < item.children.length; i++) {
-        parseItem(item.children[i]);
+        parseItem(item.children[i], parentRecord);
       }
     }
   };
