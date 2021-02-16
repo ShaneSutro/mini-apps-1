@@ -13,7 +13,7 @@ class App extends React.Component {
       stage: 1,
       name: '',
       email: '',
-      password: '',
+      pass: '',
       address1: '',
       address2: '',
       city: '',
