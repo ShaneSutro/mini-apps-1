@@ -13,8 +13,17 @@ app.get('/', (req, res) => {
   res.sendFile('./index.html')
 })
 
-app.get('/tables', (req, res) => {
-  
+app.post('/users', (req, res) => {
+  model.add(req.body)
+    .then(result => res.send(JSON.stringify(result)))
+    .catch(result => res.sendStatus(400))
+})
+
+app.post('/next', (req, res) => {
+  console.log('Updating at /next')
+  model.update(req.body)
+    .then(result => res.send(JSON.stringify(result)))
+    .catch(result => res.sendStatus(400))
 })
 
 app.listen(PORT, () => {

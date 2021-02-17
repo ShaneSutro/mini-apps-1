@@ -1,0 +1,25 @@
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+button,
+input[type=submit] {
+  margin-top: 20px;
+  width: 100%;
+  background-color: transparent;
+  height: 40px;
+  color: darkgreen;
+  border: 1px solid darkgreen;
+  border-radius: 5px;
+}
+
+label {
+  margin-top: 10px;
+}
