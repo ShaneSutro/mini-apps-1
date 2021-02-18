@@ -3,11 +3,11 @@ import RowCell from './RowCell.jsx'
 
 const Row = (props) => {
   return (
-    <div className="row">
+    <tr className="row">
       {props.row.map((cell, index) => {
         return <RowCell className="cell" key={index} cell={cell} />
       })}
-    </div>
+    </tr>
   )
 }
 

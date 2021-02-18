@@ -20,13 +20,15 @@ class App extends React.Component {
     return (
       <div>
         <h1>Connect 4</h1>
-        <div className="board">
-          {
-            this.state.board.map((row, index) => {
-              return <Row key={index} row={row} />
-            })
-          }
-        </div>
+        <table className="board">
+          <tbody>
+            {
+              this.state.board.map((row, index) => {
+                return <Row key={index} row={row} />
+              })
+            }
+          </tbody>
+        </table>
       </div>
     )
   }

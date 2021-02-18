@@ -2,7 +2,7 @@ import React from 'react'
 
 var RowCell = (props) => {
   return (
-    <div className="cell">{props.cell}</div>
+    <td className="cell">{props.cell}</td>
   )
 }
 
