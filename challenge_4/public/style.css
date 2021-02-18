@@ -4,4 +4,22 @@ h1 {
 
 .row {
   display: flex;
+  border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.p1 {
+  background-color: blue;
+}
+
+.p2 {
+  background-color: red;
 }

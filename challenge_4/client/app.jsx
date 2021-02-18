@@ -11,8 +11,8 @@ class App extends React.Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 1, 1, 0],
+        [1, 2, 1, 1, 2, 2, 1]
       ]
     }
   }
@@ -24,7 +24,7 @@ class App extends React.Component {
           <tbody>
             {
               this.state.board.map((row, index) => {
-                return <Row key={index} row={row} />
+                return <Row key={index} x={index} row={row} />
               })
             }
           </tbody>
