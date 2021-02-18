@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Row from './components/Row.jsx'
+import gravity from './helpers/gravity'
+import win from './helpers/win'
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +14,7 @@ class App extends React.Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 1, 1, 0],
-        [1, 2, 1, 1, 2, 2, 1]
+        [1, 2, 1, 1, 1, 1, 2]
       ],
       turn: 1
     }
@@ -21,8 +23,10 @@ class App extends React.Component {
   select(e) {
     var col = Number(e.target.dataset.x)
     var row = Number(e.target.dataset.y)
-    var newBoard = this.state.board.slice();
-    newBoard[row].splice(col, 1, this.state.turn)
+    var newBoard = gravity.drop(this.state.board.slice(), [col, row], this.state.turn)
+    var winner = win.detectWin(this.state.board)
+    // var newBoard = this.state.board.slice();
+    // newBoard[row].splice(col, 1, this.state.turn)
     this.setState({board: newBoard})
     console.log('Column', e.target.dataset.x, 'Row', e.target.dataset.y)
 
