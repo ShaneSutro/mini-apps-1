@@ -1,10 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Row from './components/Row.jsx'
 
-const App = () => {
-  return (
-    <h1>This is a new message</h1>
-  )
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      board: [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+      ]
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>Connect 4</h1>
+        <div className="board">
+          {
+            this.state.board.map((row, index) => {
+              return <Row key={index} row={row} />
+            })
+          }
+        </div>
+      </div>
+    )
+  }
 
 }
 
