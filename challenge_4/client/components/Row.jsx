@@ -5,7 +5,7 @@ const Row = (props) => {
   return (
     <tr className="row">
       {props.row.map((cell, index) => {
-        return <RowCell className="cell" key={index} cell={cell} x={props.x} y={index}/>
+        return <RowCell className="cell" key={index} cell={cell} x={index} y={props.y} select={props.select} />
       })}
     </tr>
   )

@@ -13,9 +13,27 @@ class App extends React.Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 1, 1, 0],
         [1, 2, 1, 1, 2, 2, 1]
-      ]
+      ],
+      turn: 1
     }
   }
+
+  select(e) {
+    var col = Number(e.target.dataset.x)
+    var row = Number(e.target.dataset.y)
+    var newBoard = this.state.board.slice();
+    newBoard[row].splice(col, 1, this.state.turn)
+    this.setState({board: newBoard})
+    console.log('Column', e.target.dataset.x, 'Row', e.target.dataset.y)
+
+    this.switchTurn()
+  }
+
+  switchTurn() {
+    var newTurn = this.state.turn === 1 ? 2 : 1
+    this.setState({turn: newTurn})
+  }
+
   render() {
     return (
       <div>
@@ -24,7 +42,7 @@ class App extends React.Component {
           <tbody>
             {
               this.state.board.map((row, index) => {
-                return <Row key={index} x={index} row={row} />
+                return <Row key={index} y={index} row={row} select={this.select.bind(this)}/>
               })
             }
           </tbody>
