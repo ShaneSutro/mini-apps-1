@@ -16,7 +16,7 @@ describe('Checking For Wins', () => {
     expect(colWinner).to.equal(2)
   })
 
-  it('Should report a downward diagonal as a win', () => {
+  it('Should report a diagonal (left or right) as a win', () => {
     fixtures.diagWinsArray.forEach(board => {
       diagWinner = win.hasAnyDiagWins(board)
       expect(diagWinner).to.equal(2)
@@ -25,6 +25,6 @@ describe('Checking For Wins', () => {
 
   it('Should detect a tie', () => {
     tie = win.detectWins(fixtures.tie)
-    expect(tie).to.equal(0)
+    expect(tie).to.equal(3)
   })
 })

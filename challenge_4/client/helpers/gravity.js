@@ -5,14 +5,13 @@ var drop = (board, target, turn) => {
   var newCol = newCoords[0]
   var newRow = newCoords[1]
   newBoard[newRow].splice(newCol, 1, turn)
-  console.log('modified board:', newBoard)
   return newBoard
 }
 
 var getDroppedLocation = (board, target) => {
   var col = target[0]
   var row = target[1]
-  while (row < 4) {
+  while (row < 5) {
     if (isEmpty(board, col, row + 1)) {
       row++
     } else {
@@ -26,4 +25,9 @@ var isEmpty = (board, col, row) => {
   return board[row][col] === 0;
 }
 
+var alreadyOccupied = (board, col, row) => {
+  return board[row][col] !== 0;
+}
+
 module.exports.drop = drop;
+module.exports.alreadyOccupied = alreadyOccupied;
