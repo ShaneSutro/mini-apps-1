@@ -24,9 +24,8 @@ class App extends React.Component {
     var col = Number(e.target.dataset.x)
     var row = Number(e.target.dataset.y)
     var newBoard = gravity.drop(this.state.board.slice(), [col, row], this.state.turn)
-    var winner = win.detectWin(this.state.board)
-    // var newBoard = this.state.board.slice();
-    // newBoard[row].splice(col, 1, this.state.turn)
+    // var winner = win.detectWins(this.state.board)
+    win.hasAnyRowWins(this.state.board)
     this.setState({board: newBoard})
     console.log('Column', e.target.dataset.x, 'Row', e.target.dataset.y)
 

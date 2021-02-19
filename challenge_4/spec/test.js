@@ -1,25 +1,30 @@
-// var assert = require('assert')
-// var expect = require('chai').expect;
-// var should = require('chai').should()
+var assert = require('assert')
+var expect = require('chai').expect;
+var should = require('chai').should()
+win = require('../client/helpers/win')
+fixtures = require('./fixtures')
+
 
 describe('Checking For Wins', () => {
-  xit('Should report 4 across as a win', () => {
-    //test
+  it('Should return the winning player number for a winning row', () => {
+    rowWinner = win.hasAnyRowWins(fixtures.rowWin)
+    expect(rowWinner).to.equal(1)
   })
 
-  xit('Should report 4 stacked as a win', () => {
-    //test
+  it('Should return the winning player number for a winning column', () => {
+    colWinner = win.hasAnyColWins(fixtures.columnWin)
+    expect(colWinner).to.equal(2)
   })
 
-  xit('Should report a downward diagonal as a win', () => {
-    //test
+  it('Should report a downward diagonal as a win', () => {
+    fixtures.diagWinsArray.forEach(board => {
+      diagWinner = win.hasAnyDiagWins(board)
+      expect(diagWinner).to.equal(2)
+    })
   })
 
-  xit('Should report an upward diagonal as a win', () => {
-    //test
-  })
-
-  xit('Should detect a tie', () => {
-    //test
+  it('Should detect a tie', () => {
+    tie = win.detectWins(fixtures.tie)
+    expect(tie).to.equal(0)
   })
 })
